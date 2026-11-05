@@ -471,6 +471,49 @@ h1,h2,h3{letter-spacing:-.035em}
 .fig-bot{bottom:26px}
 @media (max-width:640px){.fig-labels span:not(.on){opacity:0}.fig-labels span{bottom:12px!important}.fig-graph,.fig-labels{height:46%}.fig-axis{display:none}}
 
+/* Premiere-style Effect Controls readout */
+.readout{display:block;background:color-mix(in srgb,var(--bg) 55%,var(--surface));min-height:262px;border-top:1px solid var(--line)}
+.readout div{background:none;padding:0;min-height:0}
+.readout .ec-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:0 16px;border-bottom:1px solid var(--line);font:500 11px/1 var(--mono);letter-spacing:.08em;color:var(--muted);min-height:40px}
+.ec-tabs{display:flex;gap:18px;align-self:stretch}
+.ec-tabs span{display:flex;align-items:center;border-bottom:2px solid transparent;padding-top:2px}
+.ec-tabs span.on{color:var(--fg);border-color:var(--accent)}
+@media (max-width:640px){.ec-tabs span:not(.on){display:none}}
+.readout .ec-clip{border-bottom:1px solid var(--line);transform-origin:top;animation:ecIn .5s cubic-bezier(.2,.7,.2,1) both}
+.readout .ec-clip:nth-of-type(3){animation-delay:.09s}
+@keyframes ecIn{from{opacity:0;clip-path:inset(0 0 100% 0);transform:translateY(-6px)}to{opacity:1;clip-path:inset(0 0 0 0);transform:none}}
+.readout .ec-row{display:grid;grid-template-columns:minmax(0,220px) 84px minmax(0,1fr);align-items:center;gap:14px;padding:7px 16px;min-height:38px}
+.readout .ec-row + .ec-row{border-top:1px solid color-mix(in srgb,var(--line) 60%,transparent)}
+.readout .ec-title{background:color-mix(in srgb,var(--accent) 9%,transparent)}
+.ec-k{display:flex;align-items:center;gap:8px;min-width:0;font:500 13px/1.2 var(--body);color:var(--muted)}
+.ec-k b{font:600 14px/1.2 var(--body);color:var(--fg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tw{display:inline-block;font-style:normal;font-size:10px;color:var(--muted);animation:twirl .35s .15s both}
+@keyframes twirl{from{transform:rotate(0)}to{transform:rotate(90deg)}}
+.fx{font:italic 700 10px/1 var(--mono);color:#05070D;background:#9CC0FF;border-radius:3px;padding:3px 5px}
+.ec-trk{font:600 11px/1 var(--mono);color:var(--muted);justify-self:start;border:1px solid var(--line);padding:4px 6px;border-radius:4px}
+.ec-v{font:600 13px/1 var(--mono);color:#4A9BFF;font-variant-numeric:tabular-nums;justify-self:start;border-bottom:1px dashed rgba(74,155,255,.55);padding-bottom:2px}
+.sw{position:relative;flex:0 0 auto;width:12px;height:12px;border-radius:50%;border:1.5px solid #4A9BFF}
+.sw::after{content:"";position:absolute;left:50%;top:1px;width:1.5px;height:4px;background:#4A9BFF;transform:translateX(-50%)}
+.sw.off{border-color:var(--muted)}.sw.off::after{background:var(--muted)}
+.ec-lane{position:relative;display:block;height:24px;border-left:1px solid var(--line);background:repeating-linear-gradient(90deg,transparent 0 calc(10% - 1px),rgba(156,192,255,.07) calc(10% - 1px) 10%)}
+.ec-lane svg{position:absolute;inset:3px 0;width:100%;height:calc(100% - 6px);overflow:visible}
+.ec-lane polyline{fill:none;stroke:#9CC0FF;stroke-width:1.5;vector-effect:non-scaling-stroke}
+.ec-lane svg{animation:drawKf .9s .15s ease-out both}
+@keyframes drawKf{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+.kf{position:absolute;top:50%;width:9px;height:9px;background:#C9D6F2;transform:translate(-50%,-50%) rotate(45deg);box-shadow:0 0 0 1.5px #05070D;animation:kfPop .3s both}
+.kf.kf2{background:#4A9BFF;animation-delay:.55s}
+@keyframes kfPop{from{transform:translate(-50%,-50%) rotate(45deg) scale(0)}}
+.ec-cb{position:absolute;inset:3px 0;border-radius:3px;background:color-mix(in srgb,var(--accent) 35%,var(--surface));border:1px solid var(--accent);font:600 10px/1 var(--mono);color:#fff;display:flex;align-items:center;padding-left:8px;white-space:nowrap;overflow:hidden}
+.ec-cb.aud{background:repeating-linear-gradient(90deg,rgba(156,192,255,.35) 0 2px,transparent 2px 5px),color-mix(in srgb,var(--accent2) 18%,var(--surface));border-color:var(--accent2)}
+.vu{position:absolute;right:8px;top:4px;bottom:4px;display:flex;gap:2px;align-items:flex-end}
+.vu i{width:4px;height:30%;background:linear-gradient(#ff5a4a,#ffd34a 28%,#4ade80 60%);border-radius:1px;animation:vu .42s ease-in-out infinite alternate}
+.vu i:nth-child(2n){animation-duration:.31s}.vu i:nth-child(3n){animation-duration:.55s;animation-delay:-.2s}.vu i:nth-child(5n){animation-duration:.27s}
+@keyframes vu{to{height:100%}}
+.ec-ph{position:absolute;top:-7px;bottom:-7px;width:1px;background:#E5483A;z-index:2}
+.ec-note{grid-column:2 / -1;color:var(--fg);font-size:14px;line-height:1.45}
+.readout .ec-empty{padding:28px 16px;color:var(--muted);font:500 12px/1.5 var(--mono)}
+@media (max-width:640px){.readout .ec-row{grid-template-columns:minmax(0,1fr) auto}.ec-lane{display:none}.ec-note{grid-column:1 / -1}}
+
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
   html{scroll-behavior:auto}
@@ -787,9 +830,23 @@ h1,h2,h3{letter-spacing:-.035em}
     const key = active.map(a => a.name).join('|');
     if(key !== lastKey){
       lastKey = key;
-      readout.innerHTML = (active.length ? active : [{name:'Gap', lvl:0, note:'Between clips. Click any clip to jump to it.'}]).map(a =>
-        '<div><b>' + a.name + '</b><p>' + a.note + '</p>' + (a.lvl ? '<div class="meter"><i style="width:' + a.lvl + '%"></i></div>' : '') + '</div>').join('');
+      const TR = ['V2', 'V1', 'A1'];
+      readout.innerHTML = '<div class="ec-head"><span class="ec-tabs"><span class="on">Effect Controls</span><span>Lumetri Color</span><span>Audio Clip Mixer</span></span><span>' + (active.length ? active.length + (active.length > 1 ? ' clips' : ' clip') + ' under playhead' : 'No clip under playhead') + '</span></div>' +
+        (active.length ? active.map(a => {
+          const aud = a.t === 2, lv = (18 - a.lvl * .16).toFixed(1), ph = '<i class="ec-ph" data-s="' + a.s + '" data-l="' + a.l + '"></i>';
+          return '<div class="ec-clip">' +
+            '<div class="ec-row ec-title"><span class="ec-k"><i class="tw">▸</i><i class="fx">fx</i><b>' + a.name + '</b></span><span class="ec-trk">' + TR[a.t] + '</span><span class="ec-lane"><span class="ec-cb' + (aud ? ' aud' : '') + '">' + a.name + '</span>' + (aud ? '<span class="vu">' + '<i></i>'.repeat(10) + '</span>' : '') + ph + '</span></div>' +
+            '<div class="ec-row"><span class="ec-k"><i class="sw"></i>Skill level</span><span class="ec-v" data-to="' + a.lvl + '">0.0 %</span><span class="ec-lane"><svg viewBox="0 0 100 20" preserveAspectRatio="none"><polyline points="0,18 30,' + lv + ' 100,' + lv + '"/></svg><i class="kf" style="left:0%"></i><i class="kf kf2" style="left:30%"></i>' + ph + '</span></div>' +
+            '<div class="ec-row"><span class="ec-k"><i class="sw off"></i>Notes</span><span class="ec-note">' + a.note + '</span></div>' +
+          '</div>';
+        }).join('') : '<div class="ec-empty">Gap in the sequence. Click any clip on the timeline to load it here.</div>');
+      readout.querySelectorAll('.ec-v').forEach(el => {
+        const to = +el.dataset.to, t0 = performance.now();
+        if(reduce){ el.textContent = to.toFixed(1) + ' %'; return; }
+        (function step(now){ const k = Math.min(1, (now - t0) / 800), e = 1 - Math.pow(1 - k, 3); el.textContent = (to * e).toFixed(1) + ' %'; if(k < 1) requestAnimationFrame(step); })(t0);
+      });
     }
+    readout.querySelectorAll('.ec-ph').forEach(p => { p.style.left = Math.max(0, Math.min(100, (x - +p.dataset.s) / +p.dataset.l * 100)) + '%'; });
   }
   render();
   const t0 = performance.now();
