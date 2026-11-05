@@ -289,6 +289,60 @@ button.btn{font-family:var(--body)}
 .lb-x:hover{background:#fff;color:#000}
 .lb-t{margin:0;color:#F1E9DF;font:500 13px/1.4 var(--mono)}
 
+/* ============ 3D: hero rig, category coverflow, tilt cards ============ */
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(24px,4vw,56px);align-items:center}
+.hero-copy{display:grid;gap:22px;min-width:0}
+.hero-copy h1{font-size:clamp(52px,7vw,118px)}
+.hero-3d{position:relative;height:clamp(320px,40vw,520px);perspective:1100px}
+.h3-rig{position:absolute;inset:0;transform-style:preserve-3d}
+.h3c{position:absolute;width:36%;aspect-ratio:9/16;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.18);box-shadow:0 30px 60px rgba(0,0,0,.5);background:#2B1F14 center/cover no-repeat;padding:0;cursor:pointer;appearance:none;animation:bob 7s ease-in-out infinite}
+.h3c.wide{width:60%;aspect-ratio:16/9}
+.h3c .pbtn{width:40px;height:40px;opacity:0;transition:opacity .3s}
+.h3c:hover .pbtn,.h3c:focus-visible .pbtn{opacity:1}
+@keyframes bob{50%{translate:0 -12px}}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr}.hero-3d{height:340px}}
+.cf{position:relative;height:clamp(300px,42vw,440px);perspective:1200px;touch-action:pan-y;user-select:none;cursor:grab;outline-offset:6px}
+.cf.dragging{cursor:grabbing}
+.cf,.hero-3d{overflow-x:clip}
+.cf-rail{position:absolute;inset:0;transform-style:preserve-3d}
+.panel{position:absolute;left:50%;top:50%;width:clamp(210px,32vw,340px);aspect-ratio:4/5;translate:-50% -50%;border-radius:16px;border:1px solid var(--line);background:var(--surface);overflow:hidden;appearance:none;padding:0;color:#fff;cursor:pointer;text-align:left;will-change:transform,opacity;transition:border-color .3s,box-shadow .3s}
+.panel .p-bg{position:absolute;inset:0;background:#2B1F14 center/cover no-repeat;transition:transform .6s}
+.panel.on:hover .p-bg{transform:scale(1.05)}
+.panel .p-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,8,6,.05) 25%,rgba(10,8,6,.9))}
+.panel .p-info{position:absolute;left:0;right:0;bottom:0;padding:20px;display:grid;gap:6px}
+.panel small{font:500 11px/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.78)}
+.panel b{font:900 clamp(34px,4.4vw,54px)/.95 'Big Shoulders Display',Impact,sans-serif;text-transform:uppercase}
+.panel em{font:500 13px/1.4 'Instrument Sans',system-ui,sans-serif;font-style:normal;color:rgba(255,255,255,.82)}
+.panel:not(.on) .p-info{opacity:.35;transition:opacity .3s}
+.panel.on{border-color:var(--accent);box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 1px var(--accent)}
+.cf-ctl{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:18px}
+.arrow{appearance:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--fg);font:600 18px/1 var(--body);cursor:pointer;flex:0 0 auto}
+.arrow:hover{border-color:var(--accent);color:var(--accent)}
+.cat-tabs{display:flex;gap:4px;flex-wrap:wrap;justify-content:center;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px}
+.cat-tabs button,.chips button{appearance:none;border:0;background:none;color:var(--muted);font:600 13px/1 var(--body);padding:9px 14px;border-radius:999px;cursor:pointer;white-space:nowrap;transition:color .2s,background .2s,border-color .2s}
+.cat-tabs button[aria-selected="true"]{background:var(--accent);color:var(--on-accent)}
+.cat-sub{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:34px 0 16px}
+.cat-sub p{margin:0;color:var(--muted);max-width:48ch}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chips button{border:1px solid var(--line)}
+.chips button:hover{color:var(--fg)}
+.chips button[aria-selected="true"]{border-color:var(--accent);color:var(--accent)}
+.grid3d{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:16px}
+.grid3d.vert{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.grid3d.vert .vc .th{aspect-ratio:9/16;background:linear-gradient(170deg,#5A2B10,#16130F)}
+.grid3d .vc{animation:flipIn .6s cubic-bezier(.2,.7,.2,1) backwards;animation-delay:calc(var(--i,0) * 45ms)}
+@keyframes flipIn{from{opacity:0;transform:perspective(900px) rotateX(-28deg) translateY(40px)}}
+.vc .tg{position:absolute;top:10px;left:10px;font:700 10px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:var(--accent);color:var(--on-accent);padding:5px 7px;border-radius:4px}
+.vc .pv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tilt{transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .2s ease-out,border-color .25s}
+.vc.tilt:hover{transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) scale(1.03)}
+.tilt::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.18),transparent 55%);opacity:0;transition:opacity .3s;pointer-events:none;z-index:3}
+.tilt:hover::after{opacity:1}
+.pkg{position:relative}
+.lb-meta{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.lb-open{color:#F2A33A;font:600 13px/1.3 var(--body)}
+.lb-frame video{position:absolute;inset:0;width:100%;height:100%;background:#000}
+
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
   html{scroll-behavior:auto}
@@ -320,11 +374,16 @@ button.btn{font-family:var(--body)}
 <!-- ===================== VIDEO ===================== -->
 <div class="mode" data-for="video">
   <section class="wrap v-hero letterbox">
-    <div class="eyebrow rise"><span class="rec"><i></i>REC</span><span class="tc" id="heroTc">00:00:00:00</span><span>Video editor · Content creator · Visual storyteller</span></div>
-    <h1 class="rise">Visual stories<br>that <em>perform.</em></h1>
-    <p class="lead rise">I turn ideas into videos that grab attention, hold it, and grow the channel behind them: long-form YouTube, brand content and reels, edited in Premiere Pro and After Effects, with AI tools where they make the work faster and sharper.</p>
-    <div class="stats rise"><div><b>9</b><span>years editing</span></div><div><b>6</b><span>years in social content</span></div><div><b>17</b><span>videos on this page</span></div></div>
-    <div class="btns rise"><button class="btn" data-play="drive:1TI__e-8tA-OmDWD7vgpf8R2NyQS9bxdB" data-title="Highlight reel" data-v="1">▶ Watch the showreel</button><a class="btn ghost" href="#v-work" data-scroll>See the work</a></div>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow rise"><span class="rec"><i></i>REC</span><span class="tc" id="heroTc">00:00:00:00</span><span>Video editor · Content creator · Visual storyteller</span></div>
+        <h1 class="rise">Visual stories<br>that <em>perform.</em></h1>
+        <p class="lead rise">I turn ideas into videos that grab attention, hold it, and grow the channel behind them: reels, documentaries, podcasts and AI-made video, edited in Premiere Pro and After Effects.</p>
+        <div class="stats rise"><div><b>9</b><span>years editing</span></div><div><b>6</b><span>years in social content</span></div><div><b id="vidCount">17</b><span>videos in the work panel</span></div></div>
+        <div class="btns rise"><a class="btn" href="#v-work" data-scroll>Explore the work</a><a class="btn ghost" href="#contact" data-scroll>Work with me</a></div>
+      </div>
+      <div class="hero-3d" id="hero3d"><div class="h3-rig" id="rig"></div></div>
+    </div>
   </section>
 
   <section class="clients" aria-label="Clients">
@@ -351,13 +410,11 @@ button.btn{font-family:var(--body)}
   </section>
 
   <section class="wrap block" id="v-work">
-    <div class="sec-head"><h2>Long-form YouTube</h2><p>Talking heads, tech explainers, AI-generated pieces and podcast teasers. Tap a video to play it.</p></div>
-    <div class="lf" id="longForm"></div>
-  </section>
-
-  <section class="wrap block" style="padding-top:0">
-    <div class="sec-head"><h2>Shorts &amp; reels</h2><p>Vertical edits built for retention: a hook in the first second, captions, sound on the beat. Swipe for more.</p></div>
-    <div class="sf" id="shortForm"></div>
+    <div class="sec-head"><h2>The work</h2><p>Spin the panel to pick a category, then filter by style. Drag, swipe or use the arrows.</p></div>
+    <div class="cf" id="cf" tabindex="0" aria-label="Work categories. Use the left and right arrow keys to switch."><div class="cf-rail" id="rail"></div></div>
+    <div class="cf-ctl"><button class="arrow" id="cfPrev" aria-label="Previous category">←</button><div class="cat-tabs" id="catTabs" role="tablist" aria-label="Categories"></div><button class="arrow" id="cfNext" aria-label="Next category">→</button></div>
+    <div class="cat-sub"><p id="catBlurb"></p><div class="chips" id="chips" role="tablist" aria-label="Filter by style"></div></div>
+    <div class="grid3d" id="grid"></div>
   </section>
 
   <section class="wrap block" style="padding-top:0">
@@ -471,7 +528,7 @@ button.btn{font-family:var(--body)}
 </section>
 
 <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Video player">
-  <div class="lb-box" id="lbBox"><button class="lb-x" id="lbX" aria-label="Close video">✕</button><div class="lb-frame" id="lbFrame"></div><p class="lb-t" id="lbT"></p></div>
+  <div class="lb-box" id="lbBox"><button class="lb-x" id="lbX" aria-label="Close video">✕</button><div class="lb-frame" id="lbFrame"></div><div class="lb-meta"><p class="lb-t" id="lbT"></p><a class="lb-open" id="lbOpen" href="#" target="_blank" rel="noopener" hidden>Not playing? Open it on Google Drive ↗</a></div></div>
 </div>
 
 <script>
@@ -577,35 +634,195 @@ button.btn{font-family:var(--body)}
     let v = 15; const id = setInterval(() => { v += 3; ba.style.setProperty('--x', v + '%'); baR.value = v; if(v >= 50) clearInterval(id); }, 30);
   };
 
-  /* ---------- VIDEO: work grid + lightbox (videos load only when played) ---------- */
-  const LONG = [
-    {id:'yt:3DURrMkrxdk', t:'Talking head', s:'YouTube · long form'},
-    {id:'yt:PL2d3gnPwEI', t:'Tech documentation', s:'YouTube · explainer'},
-    {id:'yt:gIn8PYj4L6w', t:'Tech talking head', s:'YouTube · long form'},
-    {id:'drive:1ebDxPiqbXCdQWWzbdiMGI9YCEofTvwGq', t:'AI-generated video', s:'AI video creation'},
-    {id:'drive:1_SFOGb_eHKvLg6Zjmj3Fq82vGjkklex_', t:'Podcast teaser', s:'Podcast · promo cut'}
+  /* ---------- VIDEO: 3D work panel + lightbox (players load only when played) ---------- */
+  // Categories and videos. To add a video: add a line to WORK.
+  // src: 'yt:VIDEO_ID' (YouTube), 'mp4:videos/file.mp4' (self-hosted), or 'drive:FILE_ID'.
+  // Optional: poster (image path), prev (short silent mp4 loop played on hover).
+  const CATS = [
+    {key:'reels', name:'Reels', v:true, blurb:'Vertical edits built for retention: a hook in the first second, captions, sound on the beat.'},
+    {key:'docs', name:'Documentaries', v:false, blurb:'Long-form YouTube: tech explainers and talking-head storytelling.'},
+    {key:'podcast', name:'Podcast', v:false, blurb:'Teasers and clips cut from long conversations.'},
+    {key:'ai', name:'AI Creations', v:false, blurb:'Videos built with AI-generated visuals, edited like any other film.'}
   ];
-  const SHORTS = ['1TI__e-8tA-OmDWD7vgpf8R2NyQS9bxdB','1qnFBX9TMX9JWzM0_Y9Ds6AENim9G3Vm5','1vkz-90cdtWczdzsViJzynpGvTmWocjT6','1gwCuQjL0rPoIFIPDdcM5dWyTAAmHAlU2','1-4Zqor4QCMCKQr1qaWw2gKQzT54kRKWU','1gE86Q5CEt0puxgG4oewFyyZI_VONIAVP','1CDuh3pMlS5KYAO7Lab_IJTwR3AUVNt5v','1yFb71c-DGww7sAquHbSSUf3NPZ98tidD','1DSwxHAmSN42xR0qGN-VF4xf6YnabqeLO','1SHQIf-zqt_MgmgFfOZF8zipE0Pljys95','1ESm8P5Sxve4-Z2v4R1Iy3_l8tL9whQpF','1fy2xyXcNjx4tc51CkiwqdIccjWdB0ywN'];
-  const thumb = (src, vertical) => { const [k, v] = src.split(':'); return k === 'yt' ? 'https://i.ytimg.com/vi/' + v + '/hqdefault.jpg' : 'https://drive.google.com/thumbnail?id=' + v + '&sz=w' + (vertical ? 400 : 800); };
-  const embed = src => { const [k, v] = src.split(':'); return k === 'yt' ? 'https://www.youtube-nocookie.com/embed/' + v + '?autoplay=1&rel=0&playsinline=1' : 'https://drive.google.com/file/d/' + v + '/preview'; };
-  function card(src, title, sub, vertical, n){
-    const b = document.createElement('button'); b.className = 'vc'; b.dataset.play = src; b.dataset.title = title; if(vertical) b.dataset.v = '1';
-    b.setAttribute('aria-label', 'Play ' + title);
-    b.innerHTML = '<div class="th"><img loading="lazy" decoding="async" alt="" src="' + thumb(src, vertical) + '"><div class="pbtn"></div>' + (n ? '<span class="num">' + n + '</span>' : '') + '</div>' + (vertical ? '' : '<div class="cap"><b>' + title + '</b><span>' + sub + '</span></div>');
+  const D = 'drive:';
+  const WORK = [
+    {c:'reels', tags:['Motion'], t:'Reel 01', src:D+'1TI__e-8tA-OmDWD7vgpf8R2NyQS9bxdB'},
+    {c:'reels', tags:['Testimonials'], t:'Reel 02', src:D+'1qnFBX9TMX9JWzM0_Y9Ds6AENim9G3Vm5'},
+    {c:'reels', tags:['Storytelling'], t:'Reel 03', src:D+'1vkz-90cdtWczdzsViJzynpGvTmWocjT6'},
+    {c:'reels', tags:['Testimonials'], t:'Reel 04', src:D+'1gwCuQjL0rPoIFIPDdcM5dWyTAAmHAlU2'},
+    {c:'reels', tags:['Storytelling'], t:'Reel 05', src:D+'1-4Zqor4QCMCKQr1qaWw2gKQzT54kRKWU'},
+    {c:'reels', tags:['Storytelling'], t:'Reel 06', src:D+'1gE86Q5CEt0puxgG4oewFyyZI_VONIAVP'},
+    {c:'reels', tags:['Testimonials'], t:'Reel 07', src:D+'1CDuh3pMlS5KYAO7Lab_IJTwR3AUVNt5v'},
+    {c:'reels', tags:['Coverage'], t:'Reel 08', src:D+'1yFb71c-DGww7sAquHbSSUf3NPZ98tidD'},
+    {c:'reels', tags:['Storytelling'], t:'Reel 09', src:D+'1DSwxHAmSN42xR0qGN-VF4xf6YnabqeLO'},
+    {c:'reels', tags:['Motion'], t:'Reel 10', src:D+'1SHQIf-zqt_MgmgFfOZF8zipE0Pljys95'},
+    {c:'reels', tags:['Storytelling'], t:'Reel 11', src:D+'1ESm8P5Sxve4-Z2v4R1Iy3_l8tL9whQpF'},
+    {c:'reels', tags:['Storytelling'], t:'Reel 12', src:D+'1fy2xyXcNjx4tc51CkiwqdIccjWdB0ywN'},
+    {c:'docs', tags:['Talking head'], t:'Talking head', src:'yt:3DURrMkrxdk'},
+    {c:'docs', tags:['Tech', 'Storytelling'], t:'Tech documentation', src:'yt:PL2d3gnPwEI'},
+    {c:'docs', tags:['Tech', 'Talking head'], t:'Tech talking head', src:'yt:gIn8PYj4L6w'},
+    {c:'podcast', tags:['Teaser'], t:'Podcast teaser', src:D+'1_SFOGb_eHKvLg6Zjmj3Fq82vGjkklex_'},
+    {c:'ai', tags:['AI generated'], t:'AI-generated video', src:D+'1ebDxPiqbXCdQWWzbdiMGI9YCEofTvwGq'}
+  ];
+  document.getElementById('vidCount').textContent = WORK.length;
+  const parts = src => { const i = src.indexOf(':'); return [src.slice(0, i), src.slice(i + 1)]; };
+  const thumbOf = it => { if(it.poster) return it.poster; if(!it.src) return ''; const [k, v] = parts(it.src); return k === 'yt' ? 'https://i.ytimg.com/vi/' + v + '/hqdefault.jpg' : k === 'drive' ? 'https://drive.google.com/thumbnail?id=' + v + '&sz=w640' : ''; };
+  function playerHTML(src, title){
+    const [k, v] = parts(src);
+    if(k === 'yt') return '<iframe src="https://www.youtube-nocookie.com/embed/' + v + '?autoplay=1&rel=0&playsinline=1" title="' + title + '" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+    if(k === 'mp4') return '<video src="' + v + '" controls autoplay playsinline></video>';
+    return '<iframe src="https://drive.google.com/file/d/' + v + '/preview" title="' + title + '" allow="autoplay; fullscreen" allowfullscreen></iframe>';
+  }
+  function bindTilt(els){
+    if(reduce || matchMedia('(hover: none)').matches) return;
+    els.forEach(el => {
+      el.addEventListener('pointermove', e => {
+        const r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+        el.style.setProperty('--ry', (x * 14) + 'deg'); el.style.setProperty('--rx', (-y * 14) + 'deg');
+        el.style.setProperty('--gx', ((x + .5) * 100) + '%'); el.style.setProperty('--gy', ((y + .5) * 100) + '%');
+      });
+      el.addEventListener('pointerleave', () => { el.style.setProperty('--rx', '0deg'); el.style.setProperty('--ry', '0deg'); });
+    });
+  }
+  function card(it, i, vertical){
+    const b = document.createElement('button');
+    b.className = 'vc tilt'; b.dataset.play = it.src; b.dataset.title = it.t; if(vertical) b.dataset.v = '1';
+    b.style.setProperty('--i', i);
+    b.setAttribute('aria-label', 'Play ' + it.t + ' (' + it.tags.join(', ') + ')');
+    b.innerHTML = '<div class="th"><img loading="lazy" decoding="async" alt="" src="' + thumbOf(it) + '"><div class="pbtn"></div>' + (vertical ? '<span class="tg">' + it.tags[0] + '</span><span class="num">' + it.t.replace('Reel ', '') + '</span>' : '') + '</div>' + (vertical ? '' : '<div class="cap"><b>' + it.t + '</b><span>' + it.tags.join(' · ') + '</span></div>');
     const img = b.querySelector('img'); img.onload = () => img.classList.add('ok'); img.onerror = () => img.remove();
+    if(it.prev){
+      let vid = null;
+      b.addEventListener('pointerenter', () => { if(reduce) return; if(!vid){ vid = document.createElement('video'); vid.muted = true; vid.loop = true; vid.playsInline = true; vid.preload = 'none'; vid.src = it.prev; vid.className = 'pv'; b.querySelector('.th').appendChild(vid); } vid.play().catch(() => {}); });
+      b.addEventListener('pointerleave', () => { if(vid) vid.pause(); });
+    }
     return b;
   }
-  const lfEl = document.getElementById('longForm'), sfEl = document.getElementById('shortForm');
-  LONG.forEach(v => lfEl.appendChild(card(v.id, v.t, v.s, false)));
-  SHORTS.forEach((id, i) => { const n = String(i + 1).padStart(2, '0'); sfEl.appendChild(card('drive:' + id, 'Reel ' + n, '', true, n)); });
+
+  // Hero: floating 3D stack that follows the pointer
+  const rig = document.getElementById('rig'), heroSec = document.querySelector('.v-hero');
+  const pick = t => WORK.find(w => w.t === t) || WORK[0];
+  [
+    {it: pick('Talking head'), wide: true, l: 36, tp: 2, z: -140, r: -6, d: 0},
+    {it: pick('Reel 01'), l: 0, tp: 14, z: 30, r: 16, d: -1.5},
+    {it: pick('Reel 06'), l: 32, tp: 30, z: 150, r: 0, d: -3},
+    {it: pick('Reel 08'), l: 62, tp: 22, z: 60, r: -16, d: -4.5}
+  ].forEach(h => {
+    const b = document.createElement('button');
+    b.className = 'h3c' + (h.wide ? ' wide' : ''); b.dataset.play = h.it.src; b.dataset.title = h.it.t; if(!h.wide) b.dataset.v = '1';
+    b.setAttribute('aria-label', 'Play ' + h.it.t);
+    b.style.cssText = 'left:' + h.l + '%;top:' + h.tp + '%;transform:translateZ(' + h.z + 'px) rotateY(' + h.r + 'deg);animation-delay:' + h.d + 's;background-image:url("' + thumbOf(h.it) + '")';
+    b.innerHTML = '<div class="pbtn"></div>';
+    rig.appendChild(b);
+  });
+  let mx = 0, my = 0, hrx = 0, hry = 0;
+  heroSec.addEventListener('pointermove', e => { const r = heroSec.getBoundingClientRect(); mx = (e.clientX - r.left) / r.width - .5; my = (e.clientY - r.top) / r.height - .5; });
+  heroSec.addEventListener('pointerleave', () => { mx = 0; my = 0; });
+  function heroLoop(t){
+    if(current === 'video' && !reduce){
+      const ax = mx + Math.sin(t / 2400) * .08, ay = my + Math.cos(t / 3100) * .05;
+      hrx += (ay - hrx) * .06; hry += (ax - hry) * .06;
+      rig.style.transform = 'rotateX(' + (-hrx * 16) + 'deg) rotateY(' + (hry * 24) + 'deg)';
+    }
+    requestAnimationFrame(heroLoop);
+  }
+  requestAnimationFrame(heroLoop);
+
+  // Category coverflow
+  const cf = document.getElementById('cf'), rail = document.getElementById('rail'), catTabs = document.getElementById('catTabs'), chips = document.getElementById('chips'), grid = document.getElementById('grid');
+  const N = CATS.length;
+  const panels = CATS.map((c, i) => {
+    const items = WORK.filter(w => w.c === c.key);
+    const tags = [...new Set(items.flatMap(w => w.tags))];
+    const p = document.createElement('button'); p.className = 'panel'; p.dataset.i = i;
+    p.setAttribute('aria-label', c.name + ', ' + items.length + ' videos');
+    p.innerHTML = '<span class="p-bg" style="background-image:url(\'' + thumbOf(items[0] || {}) + '\')"></span><span class="p-shade"></span><span class="p-info"><small>' + String(i + 1).padStart(2, '0') + ' / ' + String(N).padStart(2, '0') + ' · ' + items.length + (items.length === 1 ? ' video' : ' videos') + '</small><b>' + c.name + '</b><em>' + tags.join(' · ') + '</em></span>';
+    rail.appendChild(p);
+    const t = document.createElement('button'); t.setAttribute('role', 'tab'); t.textContent = c.name; t.addEventListener('click', () => goCat(i)); catTabs.appendChild(t);
+    return p;
+  });
+  let cpos = 0, target = 0, cur = -1, anim = 0, panelW = 300;
+  const wrapD = d => ((d % N) + N + N / 2) % N - N / 2;
+  const mod = i => ((i % N) + N) % N;
+  function layout(){
+    panelW = panels[0].offsetWidth || panelW;
+    panels.forEach((p, i) => {
+      const d = wrapD(i - cpos), a = Math.abs(d);
+      p.style.transform = 'translateX(' + (d * panelW * .62) + 'px) translateZ(' + (-a * panelW * .6) + 'px) rotateY(' + (-Math.max(-1.4, Math.min(1.4, d)) * 34) + 'deg)';
+      p.style.opacity = Math.max(0, 1 - a * .3);
+      p.style.zIndex = 100 - Math.round(a * 10);
+      p.classList.toggle('on', a < .5);
+      p.tabIndex = a < .5 ? 0 : -1;
+    });
+  }
+  function tick(){
+    cpos += (target - cpos) * (reduce ? 1 : .14);
+    if(Math.abs(target - cpos) < .002) cpos = target;
+    layout();
+    anim = cpos !== target ? requestAnimationFrame(tick) : 0;
+  }
+  function run(){ if(!anim) anim = requestAnimationFrame(tick); }
+  let curTag = 'All';
+  function renderGrid(tag){
+    curTag = tag;
+    [...chips.children].forEach(b => b.setAttribute('aria-selected', b.dataset.tag === tag));
+    const c = CATS[cur], items = WORK.filter(w => w.c === c.key && (tag === 'All' || w.tags.includes(tag)));
+    grid.classList.toggle('vert', !!c.v);
+    grid.innerHTML = '';
+    items.forEach((it, i) => grid.appendChild(card(it, i, c.v)));
+    bindTilt(grid.querySelectorAll('.tilt'));
+  }
+  function setCat(i){
+    if(i === cur) return;
+    cur = i;
+    [...catTabs.children].forEach((t, j) => t.setAttribute('aria-selected', j === i));
+    const items = WORK.filter(w => w.c === CATS[i].key);
+    const tags = ['All', ...new Set(items.flatMap(w => w.tags))];
+    chips.innerHTML = '';
+    tags.forEach(tg => { const b = document.createElement('button'); b.setAttribute('role', 'tab'); b.dataset.tag = tg; b.textContent = tg === 'All' ? 'All · ' + items.length : tg; b.addEventListener('click', () => renderGrid(tg)); chips.appendChild(b); });
+    document.getElementById('catBlurb').textContent = CATS[i].blurb;
+    renderGrid('All');
+  }
+  function goCat(i){ const base = Math.round(target); target = base + wrapD(mod(i) - mod(base)); run(); setCat(mod(i)); }
+  document.getElementById('cfPrev').addEventListener('click', () => goCat(cur - 1));
+  document.getElementById('cfNext').addEventListener('click', () => goCat(cur + 1));
+  cf.addEventListener('keydown', e => { if(e.key === 'ArrowLeft'){ e.preventDefault(); goCat(cur - 1); } if(e.key === 'ArrowRight'){ e.preventDefault(); goCat(cur + 1); } });
+  let dragX = null, drag0 = 0, moved = false;
+  cf.addEventListener('pointerdown', e => { dragX = e.clientX; drag0 = cpos; moved = false; });
+  cf.addEventListener('pointermove', e => {
+    if(dragX === null) return;
+    const dx = e.clientX - dragX;
+    if(!moved && Math.abs(dx) > 6){ moved = true; cf.classList.add('dragging'); try { cf.setPointerCapture(e.pointerId); } catch(err){} }
+    if(moved){ cpos = drag0 - dx / (panelW * .62); target = cpos; layout(); }
+  });
+  const endDrag = () => { if(dragX === null) return; dragX = null; cf.classList.remove('dragging'); if(moved){ target = Math.round(cpos); run(); setCat(mod(target)); } };
+  cf.addEventListener('pointerup', endDrag); cf.addEventListener('pointercancel', endDrag);
+  cf.addEventListener('click', e => {
+    if(moved){ e.preventDefault(); e.stopPropagation(); moved = false; return; }
+    const p = e.target.closest('.panel'); if(!p) return;
+    const i = +p.dataset.i;
+    if(i === cur) grid.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block: 'start'}); else goCat(i);
+  }, true);
+  addEventListener('resize', layout);
+  setCat(0); layout();
+  bindTilt(document.querySelectorAll('.pkg'));
+  document.querySelectorAll('.pkg').forEach(el => el.classList.add('tilt'));
+  const prevVideoEnter = onEnter.video;
+  onEnter.video = () => { prevVideoEnter(); layout(); };
+
+  // Clients marquee loops seamlessly
   const track = document.querySelector('.track'); track.innerHTML += track.innerHTML;
-  const lb = document.getElementById('lb'), lbBox = document.getElementById('lbBox'), lbFrame = document.getElementById('lbFrame');
+
+  // Lightbox
+  const lb = document.getElementById('lb'), lbBox = document.getElementById('lbBox'), lbFrame = document.getElementById('lbFrame'), lbOpen = document.getElementById('lbOpen');
   let lastFocus = null;
   function openVideo(src, title, vertical){
     lastFocus = document.activeElement;
     lbBox.classList.toggle('v', !!vertical);
-    lbFrame.innerHTML = '<iframe src="' + embed(src) + '" title="' + title + '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+    lbFrame.innerHTML = playerHTML(src, title);
     document.getElementById('lbT').textContent = title;
+    const [k, v] = parts(src);
+    lbOpen.hidden = k !== 'drive'; if(k === 'drive') lbOpen.href = 'https://drive.google.com/file/d/' + v + '/view';
     lb.hidden = false; document.body.style.overflow = 'hidden';
     document.getElementById('lbX').focus();
   }
