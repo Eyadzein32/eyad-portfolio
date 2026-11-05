@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Eyad Zein — Video Editor, Content Creator, Developer</title>
-<meta name="description" content="Portfolio of Eyad Zein: reels and video editing in Premiere Pro and After Effects, short-form content, and software projects.">
+<meta name="description" content="Eyad Zein: video editor and content creator with 9 years of editing experience. Long-form YouTube, reels and shorts, motion graphics, color grading and AI video, plus software projects.">
 <meta property="og:title" content="Eyad Zein Portfolio">
 <meta property="og:description" content="Video editing, content creation and software engineering.">
 <meta property="og:type" content="website">
@@ -236,6 +236,59 @@ section.block{padding-block:clamp(48px,7vw,88px)}
 .reach-row button:hover,.reach-row a.go:hover{border-color:var(--accent);color:var(--accent)}
 footer{padding-block:28px;color:var(--muted);font:500 12px/1.5 var(--mono);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
+/* ============ VIDEO WORK (from Notion portfolio) ============ */
+.stats{display:flex;gap:clamp(20px,4vw,48px);flex-wrap:wrap}
+.stats div{display:grid;gap:4px}
+.stats b{font:900 clamp(40px,5vw,60px)/1 var(--display);color:var(--accent);font-variant-numeric:tabular-nums}
+.stats span{font:500 12px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+button.btn{font-family:var(--body)}
+.clients{padding-block:28px;border-block:1px solid var(--line);display:grid;gap:18px;overflow:hidden}
+.marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.track{display:flex;width:max-content;animation:marq 34s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.track span{font:800 clamp(28px,4vw,44px)/1 var(--display);text-transform:uppercase;color:var(--muted);padding-right:30px;white-space:nowrap;display:flex;align-items:center;gap:30px}
+.track span::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent)}
+@keyframes marq{to{transform:translateX(-50%)}}
+.lf{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:16px}
+.sf{display:grid;grid-auto-flow:column;grid-auto-columns:clamp(150px,22vw,200px);gap:12px;overflow-x:auto;padding-bottom:14px;scroll-snap-type:x mandatory;scrollbar-width:thin}
+.vc{position:relative;appearance:none;border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:0;border-radius:10px;overflow:hidden;cursor:pointer;text-align:left;display:flex;flex-direction:column;scroll-snap-align:start;transition:border-color .25s,transform .25s;font:inherit}
+.vc:hover{border-color:var(--accent);transform:translateY(-3px)}
+.vc .th{position:relative;aspect-ratio:16/9;max-width:100%;background:linear-gradient(160deg,#2B6E74,#16130F);overflow:hidden}
+.sf .vc .th{aspect-ratio:9/16;background:linear-gradient(170deg,#5A2B10,#16130F)}
+.vc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:transform .5s,opacity .4s}
+.vc img.ok{opacity:1}
+.vc:hover img{transform:scale(1.05)}
+.pbtn{position:absolute;top:50%;left:50%;width:52px;height:52px;border-radius:50%;background:rgba(0,0,0,.45);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.5);transform:translate(-50%,-50%);transition:transform .3s,background .3s;display:grid;place-items:center}
+.pbtn::after{content:"";border-left:14px solid #fff;border-top:9px solid transparent;border-bottom:9px solid transparent;margin-left:4px}
+.vc:hover .pbtn{transform:translate(-50%,-50%) scale(1.12);background:var(--accent)}
+.vc .num{position:absolute;left:10px;bottom:10px;font:700 11px/1 var(--mono);background:rgba(0,0,0,.6);color:#fff;padding:5px 7px;border-radius:4px}
+.vc .cap{padding:12px 14px 14px;display:grid;gap:4px}
+.vc .cap b{font:800 20px/1.1 var(--display);text-transform:uppercase}
+.vc .cap span{font:500 11px/1.3 var(--mono);color:var(--muted)}
+.pk{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:900px){.pk{grid-template-columns:1fr}}
+.pkg{display:flex;flex-direction:column;gap:12px;padding:24px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.pkg.feat{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 8%,var(--surface))}
+.pk-tag{font:700 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.pkg h3{font-size:26px}
+.pkg p{margin:0;color:var(--muted)}
+.pkg ul{margin:4px 0 0;padding:0;list-style:none;display:grid;gap:8px;font-size:15px}
+.pkg li{display:grid;grid-template-columns:14px 1fr;gap:10px}
+.pkg li::before{content:"";width:8px;height:8px;margin-top:8px;background:var(--accent);border-radius:2px}
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:28px}
+.tools span:not(.eyebrow){font:500 13px/1 var(--mono);padding:8px 12px;border:1px solid var(--line);border-radius:6px;color:var(--fg)}
+.tools .eyebrow{margin-right:6px}
+.lb{position:fixed;inset:0;z-index:60;background:rgba(8,6,4,.9);backdrop-filter:blur(6px);display:grid;place-items:center;padding-block:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));animation:fade .25s}
+@keyframes fade{from{opacity:0}}
+.lb-box{width:min(1000px,100%);display:grid;gap:10px}
+.lb-box.v{width:min(400px,100%,44vh)}
+.lb-frame{position:relative;aspect-ratio:16/9;max-width:100%;background:#000;border-radius:10px;overflow:hidden}
+.lb-box.v .lb-frame{aspect-ratio:9/16}
+.lb-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.lb-x{justify-self:end;appearance:none;border:1px solid rgba(255,255,255,.35);background:none;color:#fff;width:40px;height:40px;border-radius:50%;cursor:pointer;font:600 16px/1 var(--body)}
+.lb-x:hover{background:#fff;color:#000}
+.lb-t{margin:0;color:#F1E9DF;font:500 13px/1.4 var(--mono)}
+
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
   html{scroll-behavior:auto}
@@ -267,10 +320,16 @@ footer{padding-block:28px;color:var(--muted);font:500 12px/1.5 var(--mono);displ
 <!-- ===================== VIDEO ===================== -->
 <div class="mode" data-for="video">
   <section class="wrap v-hero letterbox">
-    <div class="eyebrow rise"><span class="rec"><i></i>REC</span><span class="tc" id="heroTc">00:00:00:00</span><span>Video editor · Reels &amp; short-form</span></div>
-    <h1 class="rise">Cuts that keep<br>people <em>watching.</em></h1>
-    <p class="lead rise">I edit reels in Premiere Pro and After Effects for brands like Glassroom and Build Hardware Store: tight pacing, clean motion, sound that lands on the beat.</p>
-    <div class="btns rise"><a class="btn" href="#v-work" data-scroll>See the work</a><a class="btn ghost" href="https://www.instagram.com/eyadzein32/" target="_blank" rel="noopener">Instagram ↗</a></div>
+    <div class="eyebrow rise"><span class="rec"><i></i>REC</span><span class="tc" id="heroTc">00:00:00:00</span><span>Video editor · Content creator · Visual storyteller</span></div>
+    <h1 class="rise">Visual stories<br>that <em>perform.</em></h1>
+    <p class="lead rise">I turn ideas into videos that grab attention, hold it, and grow the channel behind them: long-form YouTube, brand content and reels, edited in Premiere Pro and After Effects, with AI tools where they make the work faster and sharper.</p>
+    <div class="stats rise"><div><b>9</b><span>years editing</span></div><div><b>6</b><span>years in social content</span></div><div><b>17</b><span>videos on this page</span></div></div>
+    <div class="btns rise"><button class="btn" data-play="drive:1TI__e-8tA-OmDWD7vgpf8R2NyQS9bxdB" data-title="Highlight reel" data-v="1">▶ Watch the showreel</button><a class="btn ghost" href="#v-work" data-scroll>See the work</a></div>
+  </section>
+
+  <section class="clients" aria-label="Clients">
+    <div class="wrap"><div class="eyebrow">Clients I've worked with</div></div>
+    <div class="marquee"><div class="track"><span>Paragon Developments</span><span>Glassroom</span><span>Tecno</span><span>Catch Egypt</span><span>EverGold</span><span>Build Hardware Store</span></div></div>
   </section>
 
   <section class="wrap block" style="padding-top:24px">
@@ -291,17 +350,22 @@ footer{padding-block:28px;color:var(--muted);font:500 12px/1.5 var(--mono);displ
     </div>
   </section>
 
-  <section class="wrap block" id="v-work" style="padding-top:0">
+  <section class="wrap block" id="v-work">
+    <div class="sec-head"><h2>Long-form YouTube</h2><p>Talking heads, tech explainers, AI-generated pieces and podcast teasers. Tap a video to play it.</p></div>
+    <div class="lf" id="longForm"></div>
+  </section>
+
+  <section class="wrap block" style="padding-top:0">
+    <div class="sec-head"><h2>Shorts &amp; reels</h2><p>Vertical edits built for retention: a hook in the first second, captions, sound on the beat. Swipe for more.</p></div>
+    <div class="sf" id="shortForm"></div>
+  </section>
+
+  <section class="wrap block" style="padding-top:0">
     <div class="v-work">
       <div style="display:grid;gap:18px">
-        <div class="eyebrow">Selected work</div>
+        <div class="eyebrow">What an edit adds</div>
         <h2 style="font-size:clamp(36px,5vw,60px)">Drag to see the edit.</h2>
-        <p class="lead">Raw footage on the left, final grade and titles on the right. Every reel gets the same treatment: color, pacing, captions, sound.</p>
-        <div class="reels">
-          <a class="reel" href="https://www.instagram.com/eyadzein32/" target="_blank" rel="noopener" style="--g:linear-gradient(170deg,#2B6E74,#0F2427)"><div class="prog"><i></i></div><div class="play"></div><span>Glassroom</span><b>Reel series</b></a>
-          <a class="reel" href="https://www.instagram.com/eyadzein32/" target="_blank" rel="noopener" style="--g:linear-gradient(170deg,#E39A3E,#5A2B10)"><div class="prog"><i></i></div><div class="play"></div><span>Build Hardware Store</span><b>Product reels</b></a>
-          <a class="reel" href="https://www.instagram.com/eyadzein32/" target="_blank" rel="noopener" style="--g:linear-gradient(170deg,#6B5A8E,#1E1830)"><div class="prog"><i></i></div><div class="play"></div><span>Client project</span><b>Motion edit</b></a>
-        </div>
+        <p class="lead">Raw footage on one side, final grade and titles on the other. Every video gets the same treatment: color, pacing, captions and sound.</p>
       </div>
       <div class="ba" id="ba">
         <div class="scene-wrap after" style="position:absolute;inset:0"><div class="scene"><div class="sun"></div><div class="subj"></div><div class="ttl">New drop.<br>Out now</div></div></div>
@@ -311,6 +375,16 @@ footer{padding-block:28px;color:var(--muted);font:500 12px/1.5 var(--mono);displ
         <input type="range" min="0" max="100" value="50" id="baRange" aria-label="Before and after comparison">
       </div>
     </div>
+  </section>
+
+  <section class="wrap block" style="padding-top:0">
+    <div class="sec-head"><h2>Ways to work together</h2><p>Pick the package that matches how much you want handled.</p></div>
+    <div class="pk">
+      <article class="pkg"><span class="pk-tag">Edit only</span><h3>Edit-Only Service</h3><p>You have the footage. I make it stand out.</p><ul><li>Raw footage editing</li><li>Visual effects &amp; transitions</li><li>Audio cleanup &amp; sound effects</li><li>Motion graphics: logos, text, intros and outros</li><li>Exports sized for every platform</li></ul></article>
+      <article class="pkg"><span class="pk-tag">Shoot + edit</span><h3>Shoot &amp; Edit Pro</h3><p>You know what you want. I shoot it and edit it.</p><ul><li>Video shooting &amp; directing</li><li>Editing: cuts, transitions, color grading, sound design</li><li>Visual effects &amp; audio editing</li><li>Motion graphics when the video needs them</li></ul></article>
+      <article class="pkg feat"><span class="pk-tag">End to end</span><h3>Full Content &amp; Growth</h3><p>I handle everything, from the idea to the posting calendar.</p><ul><li>Idea development and scriptwriting</li><li>Shooting &amp; directing</li><li>Full edit, color, sound design and motion graphics</li><li>Posting and optimization for TikTok, Reels and Shorts</li><li>Growth strategy: thumbnails, titles, hashtags, posting calendar</li></ul></article>
+    </div>
+    <div class="tools"><span class="eyebrow">Tools</span><span>Premiere Pro</span><span>After Effects</span><span>DaVinci Resolve</span><span>CapCut</span><span>Photoshop</span><span>Canva</span><span>AI video tools</span></div>
   </section>
 </div>
 
@@ -387,12 +461,18 @@ footer{padding-block:28px;color:var(--muted);font:500 12px/1.5 var(--mono);displ
       <h2 id="ctaTitle">Have footage?<br>Let's cut it.</h2>
     </div>
     <div class="reach">
+      <div class="reach-row"><div style="min-width:0"><b>Email</b><span id="mail">eyadzeinbuisness@gmail.com</span></div><button id="copy">Copy</button></div>
+      <div class="reach-row"><div style="min-width:0"><b>WhatsApp</b><span>+20 120 516 2798</span></div><a class="go" href="https://wa.me/201205162798" target="_blank" rel="noopener">Chat ↗</a></div>
       <div class="reach-row"><div style="min-width:0"><b>Instagram</b><span>@eyadzein32</span></div><a class="go" href="https://www.instagram.com/eyadzein32/" target="_blank" rel="noopener">Open ↗</a></div>
-      <div class="reach-row"><div style="min-width:0"><b>Email</b><span id="mail">your-email@example.com</span></div><button id="copy">Copy</button></div>
+      <div class="reach-row"><div style="min-width:0"><b>LinkedIn</b><span>Eyad Zein</span></div><a class="go" href="https://www.linkedin.com/in/eyad-zein-056952198/" target="_blank" rel="noopener">Open ↗</a></div>
     </div>
   </div>
   <div class="wrap"><footer><span>© 2026 Eyad Zein</span><span id="foot">Cairo · Video · Content · Code</span></footer></div>
 </section>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Video player">
+  <div class="lb-box" id="lbBox"><button class="lb-x" id="lbX" aria-label="Close video">✕</button><div class="lb-frame" id="lbFrame"></div><p class="lb-t" id="lbT"></p></div>
+</div>
 
 <script>
 (function(){
@@ -444,12 +524,12 @@ footer{padding-block:28px;color:var(--muted);font:500 12px/1.5 var(--mono);displ
 
   /* ---------- VIDEO: timecode + timeline ---------- */
   const VIDEO_SKILLS = [
-    {t:0, s:6,  l:30, name:'Motion graphics', lvl:85, note:'Kinetic type, animated lower thirds and logo reveals in After Effects.'},
-    {t:0, s:52, l:28, name:'Titles & captions', lvl:90, note:'Burned-in captions styled to each brand, timed to the voice.'},
-    {t:1, s:0,  l:38, name:'Cutting & pacing', lvl:92, note:'Hook in the first second, no dead air, cuts on the beat.'},
-    {t:1, s:40, l:30, name:'Color grading', lvl:80, note:'Consistent looks across clips, skin tones kept natural.'},
-    {t:1, s:72, l:28, name:'Transitions', lvl:85, note:'Match cuts and whip transitions that hide the edit.'},
-    {t:2, s:3,  l:40, name:'Sound design', lvl:78, note:'SFX, risers and cleanup so the reel sounds finished.'},
+    {t:0, s:6,  l:30, name:'Motion graphics', lvl:85, note:'Kinetic type, lower thirds and logo reveals in After Effects.'},
+    {t:0, s:52, l:30, name:'AI video creation', lvl:80, note:'AI-generated shots and visuals that make production faster and more inventive.'},
+    {t:1, s:0,  l:38, name:'Narrative editing', lvl:92, note:'Story first: structure, hooks and pacing that keep people watching to the end.'},
+    {t:1, s:40, l:30, name:'Color grading', lvl:82, note:'Consistent looks across clips, skin tones kept natural.'},
+    {t:1, s:72, l:28, name:'Retention pacing', lvl:90, note:'Short-form structure built around audience retention and viral formats.'},
+    {t:2, s:3,  l:40, name:'Sound design', lvl:80, note:'SFX, risers and cleanup so every video sounds finished.'},
     {t:2, s:46, l:46, name:'Music sync', lvl:88, note:'Beat markers drive the cut points, so visuals land with the track.'}
   ];
   const lanes = document.querySelectorAll('.lane');
@@ -496,6 +576,44 @@ footer{padding-block:28px;color:var(--muted);font:500 12px/1.5 var(--mono);displ
     if(reduce) return;
     let v = 15; const id = setInterval(() => { v += 3; ba.style.setProperty('--x', v + '%'); baR.value = v; if(v >= 50) clearInterval(id); }, 30);
   };
+
+  /* ---------- VIDEO: work grid + lightbox (videos load only when played) ---------- */
+  const LONG = [
+    {id:'yt:3DURrMkrxdk', t:'Talking head', s:'YouTube · long form'},
+    {id:'yt:PL2d3gnPwEI', t:'Tech documentation', s:'YouTube · explainer'},
+    {id:'yt:gIn8PYj4L6w', t:'Tech talking head', s:'YouTube · long form'},
+    {id:'drive:1ebDxPiqbXCdQWWzbdiMGI9YCEofTvwGq', t:'AI-generated video', s:'AI video creation'},
+    {id:'drive:1_SFOGb_eHKvLg6Zjmj3Fq82vGjkklex_', t:'Podcast teaser', s:'Podcast · promo cut'}
+  ];
+  const SHORTS = ['1TI__e-8tA-OmDWD7vgpf8R2NyQS9bxdB','1qnFBX9TMX9JWzM0_Y9Ds6AENim9G3Vm5','1vkz-90cdtWczdzsViJzynpGvTmWocjT6','1gwCuQjL0rPoIFIPDdcM5dWyTAAmHAlU2','1-4Zqor4QCMCKQr1qaWw2gKQzT54kRKWU','1gE86Q5CEt0puxgG4oewFyyZI_VONIAVP','1CDuh3pMlS5KYAO7Lab_IJTwR3AUVNt5v','1yFb71c-DGww7sAquHbSSUf3NPZ98tidD','1DSwxHAmSN42xR0qGN-VF4xf6YnabqeLO','1SHQIf-zqt_MgmgFfOZF8zipE0Pljys95','1ESm8P5Sxve4-Z2v4R1Iy3_l8tL9whQpF','1fy2xyXcNjx4tc51CkiwqdIccjWdB0ywN'];
+  const thumb = (src, vertical) => { const [k, v] = src.split(':'); return k === 'yt' ? 'https://i.ytimg.com/vi/' + v + '/hqdefault.jpg' : 'https://drive.google.com/thumbnail?id=' + v + '&sz=w' + (vertical ? 400 : 800); };
+  const embed = src => { const [k, v] = src.split(':'); return k === 'yt' ? 'https://www.youtube-nocookie.com/embed/' + v + '?autoplay=1&rel=0&playsinline=1' : 'https://drive.google.com/file/d/' + v + '/preview'; };
+  function card(src, title, sub, vertical, n){
+    const b = document.createElement('button'); b.className = 'vc'; b.dataset.play = src; b.dataset.title = title; if(vertical) b.dataset.v = '1';
+    b.setAttribute('aria-label', 'Play ' + title);
+    b.innerHTML = '<div class="th"><img loading="lazy" decoding="async" alt="" src="' + thumb(src, vertical) + '"><div class="pbtn"></div>' + (n ? '<span class="num">' + n + '</span>' : '') + '</div>' + (vertical ? '' : '<div class="cap"><b>' + title + '</b><span>' + sub + '</span></div>');
+    const img = b.querySelector('img'); img.onload = () => img.classList.add('ok'); img.onerror = () => img.remove();
+    return b;
+  }
+  const lfEl = document.getElementById('longForm'), sfEl = document.getElementById('shortForm');
+  LONG.forEach(v => lfEl.appendChild(card(v.id, v.t, v.s, false)));
+  SHORTS.forEach((id, i) => { const n = String(i + 1).padStart(2, '0'); sfEl.appendChild(card('drive:' + id, 'Reel ' + n, '', true, n)); });
+  const track = document.querySelector('.track'); track.innerHTML += track.innerHTML;
+  const lb = document.getElementById('lb'), lbBox = document.getElementById('lbBox'), lbFrame = document.getElementById('lbFrame');
+  let lastFocus = null;
+  function openVideo(src, title, vertical){
+    lastFocus = document.activeElement;
+    lbBox.classList.toggle('v', !!vertical);
+    lbFrame.innerHTML = '<iframe src="' + embed(src) + '" title="' + title + '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+    document.getElementById('lbT').textContent = title;
+    lb.hidden = false; document.body.style.overflow = 'hidden';
+    document.getElementById('lbX').focus();
+  }
+  function closeVideo(){ lb.hidden = true; lbFrame.innerHTML = ''; document.body.style.overflow = ''; if(lastFocus) lastFocus.focus(); }
+  document.addEventListener('click', e => { const p = e.target.closest('[data-play]'); if(p) openVideo(p.dataset.play, p.dataset.title, p.dataset.v); });
+  document.getElementById('lbX').addEventListener('click', closeVideo);
+  lb.addEventListener('click', e => { if(e.target === lb) closeVideo(); });
+  addEventListener('keydown', e => { if(e.key === 'Escape' && !lb.hidden) closeVideo(); });
 
   /* ---------- CONTENT: story rings ---------- */
   const CONTENT_SKILLS = [
