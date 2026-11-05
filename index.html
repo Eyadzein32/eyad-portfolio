@@ -450,6 +450,27 @@ h1,h2,h3{letter-spacing:-.035em}
 .c-hero h1 .hl{background:linear-gradient(transparent 64%,color-mix(in srgb,var(--accent) 65%,transparent) 64%)}
 @media (hover:none){.cursor{display:none}}
 
+/* Fig. 01 retention study */
+.fig-sticky{align-content:start;justify-items:center;padding-top:calc(env(safe-area-inset-top,0px) + 19vh);background:radial-gradient(70% 55% at 50% 78%,rgba(30,64,190,.3),transparent 70%),var(--bg)}
+.fig-sticky::before,.fig-sticky::after{content:"";position:absolute;left:0;right:0;height:20px;background:radial-gradient(closest-side,var(--bg) 72%,transparent 78%) 0 50%/28px 11px repeat-x,#0B1224;border-block:1px solid var(--line)}
+.fig-sticky::before{top:calc(env(safe-area-inset-top,0px) + 68px)}
+.fig-sticky::after{bottom:0}
+.fig-top{top:calc(env(safe-area-inset-top,0px) + 104px)}
+.fig-title{z-index:2;text-shadow:0 10px 50px rgba(5,7,13,.8)}
+.fig-graph{position:absolute;left:0;right:0;bottom:76px;width:100%;height:58%;overflow:visible}
+.fig-graph .gl{stroke:rgba(156,192,255,.08);stroke-width:1}
+.fig-graph .mk{stroke:rgba(156,192,255,.22);stroke-width:1;stroke-dasharray:4 7;transition:stroke .3s}
+.fig-graph .mk.on{stroke:rgba(59,107,255,.9)}
+#rLine{stroke:#9CC0FF;stroke-width:3;filter:drop-shadow(0 0 8px rgba(59,107,255,.9))}
+#rHead{stroke:rgba(255,255,255,.7);stroke-width:1}
+.fig-labels{position:absolute;left:0;right:0;bottom:76px;height:58%;pointer-events:none}
+.fig-labels span{position:absolute;translate:-50% 0;font:600 10px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);background:rgba(5,7,13,.75);border:1px solid var(--line);padding:6px 9px;border-radius:999px;white-space:nowrap;transition:color .3s,border-color .3s,background .3s,opacity .3s}
+.fig-labels span.on{color:#fff;border-color:var(--accent);background:var(--accent);box-shadow:0 0 24px rgba(59,107,255,.7)}
+.fig-dot{position:absolute;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:#fff;box-shadow:0 0 0 6px rgba(59,107,255,.35),0 0 26px #3B6BFF}
+.fig-axis{position:absolute;left:0;right:0;bottom:48px;display:flex;justify-content:space-between;font:500 10px/1 var(--mono);letter-spacing:.12em;color:var(--muted);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.fig-bot{bottom:26px}
+@media (max-width:640px){.fig-labels span:not(.on){opacity:0}.fig-labels span{bottom:12px!important}.fig-graph,.fig-labels{height:46%}.fig-axis{display:none}}
+
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
   html{scroll-behavior:auto}
@@ -500,12 +521,20 @@ h1,h2,h3{letter-spacing:-.035em}
     <p class="lead">Nine years of editing and six years making content for social. I plan, cut, grade, design the sound and add the motion graphics, so you deal with one person instead of five.</p>
   </section>
 
-  <section class="fig" id="fig" aria-label="Edit study">
+  <section class="fig" id="fig" aria-label="Retention study">
     <div class="fig-sticky">
-      <div class="fig-frame" id="figFrame" style="background-image:url('https://i.ytimg.com/vi/3DURrMkrxdk/maxresdefault.jpg')"></div>
-      <div class="fig-top"><span>Fig. 01 · Edit study</span><span class="tc" id="figTc">00:00:00:00</span></div>
+      <div class="fig-top"><span>Fig. 01 · Retention study</span><span class="tc" id="figTc">00:00:00:00</span></div>
       <h2 class="fig-title" id="figTitle">Cut for<br>retention.</h2>
-      <div class="fig-bot">Long-form YouTube · talking head · edited by Eyad Zein</div>
+      <svg class="fig-graph" viewBox="0 0 1600 900" preserveAspectRatio="none" aria-hidden="true">
+        <defs><linearGradient id="rFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3B6BFF" stop-opacity=".5"/><stop offset="1" stop-color="#3B6BFF" stop-opacity="0"/></linearGradient><clipPath id="rClip"><rect id="rClipRect" x="0" y="0" width="0" height="900"/></clipPath></defs>
+        <g id="rGrid"></g>
+        <path id="rArea" fill="url(#rFill)" clip-path="url(#rClip)"/>
+        <path id="rLine" fill="none" clip-path="url(#rClip)" vector-effect="non-scaling-stroke"/>
+        <line id="rHead" x1="0" x2="0" y1="0" y2="900" vector-effect="non-scaling-stroke"/>
+      </svg>
+      <div class="fig-labels" id="figLabels"><i class="fig-dot" id="figDot"></i></div>
+      <div class="fig-axis" aria-hidden="true"><span>0:00</span><span>0:10</span><span>0:20</span><span>0:30</span></div>
+      <div class="fig-bot">Illustration · each cut gives viewers a reason to keep watching</div>
     </div>
   </section>
 
@@ -859,22 +888,38 @@ h1,h2,h3{letter-spacing:-.035em}
     }, 2400);
   }
 
-  // Fig. 01: frame grows to full screen as you scroll, timecode follows scroll
-  const fig = document.getElementById('fig'), figFrame = document.getElementById('figFrame'), figTitle = document.getElementById('figTitle'), figTc = document.getElementById('figTc');
+  // Fig. 01: retention curve draws as you scroll; cut markers light up as the playhead passes them
+  const fig = document.getElementById('fig'), figTitle = document.getElementById('figTitle'), figTc = document.getElementById('figTc');
+  const rLine = document.getElementById('rLine'), rArea = document.getElementById('rArea'), rClip = document.getElementById('rClipRect'), rHead = document.getElementById('rHead'), rGrid = document.getElementById('rGrid');
+  const figLabels = document.getElementById('figLabels'), figDot = document.getElementById('figDot');
+  const CUTS = [[.06, 'Hook'], [.22, 'Context'], [.4, 'B-roll'], [.58, 'Pattern interrupt'], [.76, 'Payoff'], [.92, 'Call to action']];
+  const retY = u => { let r = 1 - .55 * (1 - Math.exp(-u / .16)) - .08 * u; CUTS.forEach(([c]) => { r += .06 * Math.exp(-Math.pow(u - c - .02, 2) / (2 * .012 * .012)); }); return 860 - r * 740; };
+  const pts = []; for(let i = 0; i <= 240; i++){ const u = i / 240; pts.push((u * 1600).toFixed(1) + ',' + retY(u).toFixed(1)); }
+  const lineD = 'M' + pts.join(' L');
+  rLine.setAttribute('d', lineD); rArea.setAttribute('d', lineD + ' L1600,900 L0,900 Z');
+  const NS = 'http://www.w3.org/2000/svg';
+  [180, 360, 540, 720].forEach(y => { const l = document.createElementNS(NS, 'line'); l.setAttribute('class', 'gl'); l.setAttribute('x1', 0); l.setAttribute('x2', 1600); l.setAttribute('y1', y); l.setAttribute('y2', y); l.setAttribute('vector-effect', 'non-scaling-stroke'); rGrid.appendChild(l); });
+  const marks = CUTS.map(([c, name], i) => {
+    const l = document.createElementNS(NS, 'line'); l.setAttribute('class', 'mk'); l.setAttribute('x1', c * 1600); l.setAttribute('x2', c * 1600); l.setAttribute('y1', 0); l.setAttribute('y2', 900); l.setAttribute('vector-effect', 'non-scaling-stroke'); rGrid.appendChild(l);
+    const tag = document.createElement('span'); tag.textContent = name; tag.style.left = (c * 100) + '%'; tag.style.bottom = (i % 2 ? 46 : 12) + 'px'; figLabels.appendChild(tag);
+    return {c, l, tag};
+  });
   let figQueued = false;
   function figUpdate(){
     figQueued = false;
     if(current !== 'video') return;
     const r = fig.getBoundingClientRect(), total = Math.max(1, r.height - innerHeight);
     const p = reduce ? 1 : Math.min(1, Math.max(0, -r.top / total));
-    const e = 1 - Math.pow(1 - Math.min(1, p / .55), 3);
-    figFrame.style.setProperty('--s', (.72 + .28 * e).toFixed(4));
-    figFrame.style.setProperty('--rd', (28 * (1 - e)).toFixed(1) + 'px');
-    figFrame.style.setProperty('--b', (.8 - .3 * Math.max(0, (p - .4) / .6)).toFixed(3));
-    const t = Math.max(0, Math.min(1, (p - .3) / .3));
+    const g = reduce ? 1 : Math.min(1, Math.max(0, (p - .08) / .8));
+    const t = reduce ? 1 : Math.min(1, Math.max(0, (p - .02) / .2));
     figTitle.style.setProperty('--o', t.toFixed(3));
     figTitle.style.setProperty('--ty', (40 * (1 - t)).toFixed(1) + 'px');
-    figTc.textContent = fmt(p * 263000);
+    rClip.setAttribute('width', (g * 1600).toFixed(1));
+    const x = g * 1600; rHead.setAttribute('x1', x); rHead.setAttribute('x2', x);
+    figDot.style.left = (g * 100) + '%'; figDot.style.top = (retY(g) / 900 * 100) + '%';
+    let active = -1; marks.forEach((m, i) => { const passed = g >= m.c; m.l.classList.toggle('on', passed); if(passed) active = i; });
+    marks.forEach((m, i) => m.tag.classList.toggle('on', i === active));
+    figTc.textContent = fmt(g * 30000);
   }
   addEventListener('scroll', () => { if(!figQueued){ figQueued = true; requestAnimationFrame(figUpdate); } }, {passive: true});
   addEventListener('resize', figUpdate);
